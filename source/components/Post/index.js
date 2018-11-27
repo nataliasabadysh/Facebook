@@ -15,7 +15,6 @@ import { Consumer } from 'components/HOC/withProfile';
 export default class Post extends Component {
 
     static propTypes = {
-
         comment:    string.isRequire,
         created:    number.isRequire,
         _likePosts: func.isRequire,
@@ -26,6 +25,7 @@ export default class Post extends Component {
     render() {
 
         const {comment, created, _likePosts, id, likes} = this.props;
+
         return (
             <Consumer>
                 {(context) => (

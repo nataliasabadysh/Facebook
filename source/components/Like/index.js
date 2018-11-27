@@ -6,28 +6,22 @@ import cx from 'classnames';
 // Instruments
 import Styles from './styles.m.css';
 
-//Components
-
-
 export default class Like extends Component {
 
     static propTypes = {
-
         _likePosts: func.isRequire,
         id:         string.isRequire,
-
         likes: arrayOf(
             shape({
                 id: string.isRequire,
                 firstName: string.isRequire,
                 lastName: string.isRequire,
-            })
+                })
         ).isRequire,
     };
 
     constructor(){
         super();
-
         this._getLikeByMe = this._getLikeByMe.bind(this);
         this._getLikeStyles = this._getLikeStyles.bind(this);
         this._likePosts = this._likePosts.bind(this);
@@ -39,13 +33,14 @@ export default class Like extends Component {
 
     state = {
         showLikers: false
-
     };
+
     _showLikeds(){
         this.setState({
             showLikers: true
         })
     }
+
     _hideLikeds(){
         this.setState({
             showLikers: false
@@ -61,7 +56,6 @@ export default class Like extends Component {
     _getLikeByMe(){                                                         // return true / false
 
         const { currentUserFirstName, currentUserLastName, likes} = this.props;
-
         return likes.some(( { firstName, lastName } )=> {                   /* метод some переберает массив и возвращает булевое значение   */
             return( `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}`);
         })
@@ -73,6 +67,7 @@ export default class Like extends Component {
             [Styles.liked]:likedByMe,
         });
     }
+
     _getLikesDescriptions(){
         const { currentUserFirstName, currentUserLastName, likes} = this.props;
 
@@ -98,27 +93,22 @@ export default class Like extends Component {
         return likes.length && showLikers ? <ul>{ likesJSX }</ul> : null;
     }
 
-
     render() {
         const likeStyles = this._getLikeStyles();
         const likersList = this._getLikesList();
         const likesDescriptions = this._getLikesDescriptions();
 
-
         return(
             <section className = { Styles.like } >
                 <span className = { likeStyles } onClick = {this._likePosts}>like</span>
-                <div>
-                    { likersList }
+                <div> { likersList }
                     <span
                         onMouseEnter={this._showLikeds}
                         onMouseLeave={this._hideLikeds} >
                         {likesDescriptions}
                     </span>
-
                 </div>
             </section>
         );
-
     }
 }

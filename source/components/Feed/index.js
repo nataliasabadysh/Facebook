@@ -47,9 +47,7 @@ export default class Feed extends Component {
             created: moment.utc(),
             likes: [],
             comment
-        }
-
-
+        };
 
         await delay(1200);
         this.setState(({ posts})=>({
