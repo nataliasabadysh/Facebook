@@ -1,3 +1,5 @@
+// fun is a stronger then config babel
+
 module.exports = api => {
     const env = api.env();
 

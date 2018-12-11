@@ -1,10 +1,8 @@
 // Core
 import React, { Component } from 'react';
 
-// import { hot } from 'react-hot-loader';
-// @hot(module)
-
 //Components
+import Catcher from 'components/Catcher';
 import Feed from 'components/Feed';
 import { Provider } from 'components/HOC/withProfile';
 
@@ -13,17 +11,19 @@ import avatar from 'theme/assets/lisa';
 
 const options = {
     avatar,
-    currentUserFirstName : 'Lisa',
-    currentUserLastName : 'Simson',
+    currentUserFirstName : 'Natalia',
+    currentUserLastName : 'Sabadysh',
 };
 
 
 export default class App extends Component {
     render() {
         return (
-        <Provider value={ options }>
-            <Feed  { ...options}/>
-        </Provider>
+            <Catcher>
+                <Provider value={ options }>
+                    <Feed />
+                 </Provider>
+            </Catcher>
         )
     }
 }
