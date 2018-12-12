@@ -10,13 +10,14 @@ import StatusBar from 'components/StatusBar';
 import Composer from 'components/Composer';
 import Post from 'components/Post';
 import Spinner from 'components/Spinner';
-import { api, TOKEN } from 'config/api';
-
 
 
 // Instruments
 import Styles from './styles.m.css';
-import { getUniqueID, delay} from 'instruments';
+import { api, TOKEN, GROUP_ID } from 'config/api';
+import { socket } from 'socket/init';
+
+
 @withProfile
 
 export default class Feed extends Component {
@@ -24,11 +25,52 @@ export default class Feed extends Component {
     state = {
         posts:[],
         isPostFetching: false,
+        Authorizations: [],
     };
-    componentDidMount() {
-        this._fetchPosts();
 
+     componentDidMount() {
+
+         const { currentUserFirstName, currentUserLastName } = this.props;
+          this._fetchPosts();
+          this._extrasUsers();
+
+          socket.emit('join', GROUP_ID);
+
+          socket.on('create', (postJSON)=>{
+             const {data: createdPost, meta} = JSON.parse(postJSON);
+
+             if(
+                 `${currentUserFirstName} ${currentUserLastName}` !==
+                 `${meta.autorFirstName} ${meta.autorLastName}`
+             ) {
+                 this.setState(({ posts }) => ({
+                     post: [createdPost, ...posts ],
+
+                 }))
+             }
+         });
+         socket.on('remove', (postJSON)=>{
+             const {data: removedPost, meta} = JSON.parse(postJSON);
+
+             if(
+                 `${currentUserFirstName} ${currentUserLastName}` !==
+                 `${meta.autorFirstName} ${meta.autorLastName}`
+             ) {
+                 this.setState(({ posts }) => ({
+                     post: posts.filter(post =>post.id !== removedPost.id),
+
+                 }))
+             }
+         });
     }
+     componentWillUnmount() {
+         socket.removeListener('create');
+         socket.removeListener('remove');
+    }
+
+    _extrasUsers = () => {
+
+    };
 
     _setPostsFetchingState = (state) =>{
         this.setState({
@@ -65,10 +107,12 @@ export default class Feed extends Component {
          });
 
          const { data: post } = await response.json();
+
         this.setState(({ posts})=>({
             posts:[post, ...posts],
             isPostFetching: false,
         }));
+
     };
      _likePosts = async(id)  => {
         this._setPostsFetchingState(true);
@@ -106,6 +150,7 @@ export default class Feed extends Component {
 
     render () {
         const { posts, isPostFetching } = this.state;
+
         const postsJSX = posts.map((post) => {
             return (
                 <Catcher>

@@ -23,26 +23,29 @@ class Post extends Component {
     };
 
     _removePost=() => {
-        const { _removePost, id} = this.props;
+        const { _removePost, id } = this.props;
+
         _removePost(id);
     };
     _getCross = () => {
+
         const { firstName , lastName, currentUserFirstName, currentUserLastName } = this.props;
-        return (
-        ` ${firstName}  ${lastName} === ${currentUserFirstName} ${currentUserLastName} `
-            ?  (<span className={ Styles.cross }  onClick = { this._removePost }  />)
-            : null
-        )
+
+        return  `${firstName} ${lastName}` ===
+                `${currentUserFirstName} ${currentUserLastName}` ?
+                 <span className = { Styles.cross }  onClick = { this._removePost } />
+            : null;
     };
 
     render() {
-        const {comment, created, _likePosts, id, likes, avatar, firstName, lastName} = this.props;
-        const cross = this._getCross;
+        const { comment, created, _likePosts, id, likes, avatar, firstName, lastName } = this.props;
+
+        const cross = this._getCross();
+
         return (
 
             <section className={Styles.post}>
-                {cross}
-                <span className={ Styles.cross }  onClick = { this._removePost }  />
+                { cross }
                 <img src={avatar} alt=""/>
                 <a> {`${firstName} ${lastName}`} </a>
                 <time>{moment.unix(created).format('MMM D h:mm:ss a')}</time>

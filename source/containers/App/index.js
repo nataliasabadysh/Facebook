@@ -11,8 +11,8 @@ import avatar from 'theme/assets/lisa';
 
 const options = {
     avatar,
-    currentUserFirstName : 'Natalia',
-    currentUserLastName : 'Sabadysh',
+    currentUserFirstName : 'Наталья',
+    currentUserLastName : 'Сабадыш',
 };
 
 

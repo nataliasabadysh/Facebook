@@ -41,12 +41,12 @@ export default class Like extends Component {
 
     _likePosts = () => {
         const { _likePosts, id} = this.props;
-
         _likePosts(id);
      };
 
     _getLikeByMe = () => {                                                         // return true / false
         const { currentUserFirstName, currentUserLastName, likes} = this.props;
+
         return likes.some(( { firstName, lastName } )=> {                   /* метод some переберает массив и возвращает булевое значение   */
             return( `${firstName} ${lastName}` === `${currentUserFirstName} ${currentUserLastName}`);
         })
