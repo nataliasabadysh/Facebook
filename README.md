@@ -143,7 +143,7 @@ MIT © [Lectrum](https://lectrum.io)
     <li><b> Context </b>(Provider, Consumer in React)  </li>
     <li><b> Web Socket</b> (  method : Create, Delete) </p> </li>
     <li><b> Fetch REST</b> ( method : Post) </p></li>
-    <li> Librery for Animations <b> Transition (js) , CSSTransition (css) + TransitionGroup  </b></li>
+    <li> React Animation Libraries <b> Transition (js) , CSSTransition (css) and TransitionGroup  </b></li>
     <li>Use<b>  Jest</b> to test React applications </p> </li>
     <li> Use<b>  Enzyme </b> to test React Components </p> </li>
 </ul>
