@@ -1,7 +1,8 @@
 // Core
 import React, { Component } from 'react';
-export default class Autors extends Component{
 
+
+export default class Autors extends Component{
     render() {
         const authors = this.state.posts.map(post => post.author);
 

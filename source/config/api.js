@@ -16,6 +16,4 @@ token → wcuy8g7htt
 
 Приложение «Планировщик» (персональный проект):
 token → 8GjuUc3gfbeA2xnA   // Tокен → i74vqjoh5e
-
-
  */

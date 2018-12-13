@@ -25,16 +25,14 @@ export default class Feed extends Component {
     state = {
         posts:[],
         isPostFetching: false,
-         authors: [],
+        authors: [],
     };
 
      componentDidMount() {
          const { currentUserFirstName, currentUserLastName } = this.props;
           this._fetchPosts();
-          this._extrasUsers();
 
           socket.emit('join', GROUP_ID);
-
           socket.on('create', (postJSON)=>{
              const {data: createdPost, meta} = JSON.parse(postJSON);
 
@@ -50,7 +48,6 @@ export default class Feed extends Component {
          });
          socket.on('remove', (postJSON)=>{
              const {data: removedPost, meta} = JSON.parse(postJSON);
-
              if(
                  `${currentUserFirstName} ${currentUserLastName}` !==
                  `${meta.autorFirstName} ${meta.autorLastName}`
@@ -66,11 +63,6 @@ export default class Feed extends Component {
          socket.removeListener('create');
          socket.removeListener('remove');
     }
-
-    _extrasUsers = () => {
-
-    };
-
     _setPostsFetchingState = (state) =>{
         this.setState({
             isPostFetching: state,
@@ -95,7 +87,6 @@ export default class Feed extends Component {
 
      _createPost = async(comment) => {
         this._setPostsFetchingState(true);
-
          const response  = await fetch(api, {
              method: 'POST',
              headers: {
@@ -104,8 +95,7 @@ export default class Feed extends Component {
              },
              body: JSON.stringify({ comment })
          });
-
-         const { data: post } = await response.json();
+        const { data: post } = await response.json();
 
         this.setState(({ posts})=>({
             posts:[post, ...posts],
@@ -122,7 +112,7 @@ export default class Feed extends Component {
                  Authorization : TOKEN,
              },
          });
-         const { data: likedPost } = await response.json();
+        const { data: likedPost } = await response.json();
 
         this.setState(({ posts}) =>({
              posts: posts.map( post => post.id === likedPost.id ? likedPost : post),
@@ -131,24 +121,19 @@ export default class Feed extends Component {
          }));
      };
     _removePost = async(id) => {
-
         this._setPostsFetchingState(true);
-
          await fetch((`${api}/${id}`), {
             method: 'DELETE',
             headers: {
                 Authorization : TOKEN,
             },
         });
-
         this.setState(({ posts})=>({
             posts: posts.filter((post) => post.id !== id),
             isPostFetching: false,
         }));
     };
     _aniateComposerEnter = ( composer ) =>{
-        console.log('composer', composer);
-
         fromTo(composer , 1, {opacity: 0, rotationX:50 }, {opacity: 1, rotationX:0});
     };
 
