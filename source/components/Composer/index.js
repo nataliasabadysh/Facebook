@@ -1,5 +1,4 @@
 // Core
-
 import React, { Component } from 'react';
 import { func, string } from 'prop-types';
 

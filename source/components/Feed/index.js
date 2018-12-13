@@ -13,6 +13,7 @@ import Post from 'components/Post';
 import Spinner from 'components/Spinner';
 import Postman from 'components/Postman';
 import Counter from 'components/Counter';
+import Autors from 'components/Autors';
 
 // Instruments
 import Styles from './styles.m.css';
@@ -24,11 +25,10 @@ export default class Feed extends Component {
     state = {
         posts:[],
         isPostFetching: false,
-        Authorizations: [],
+         authors: [],
     };
 
      componentDidMount() {
-
          const { currentUserFirstName, currentUserLastName } = this.props;
           this._fetchPosts();
           this._extrasUsers();
@@ -79,21 +79,19 @@ export default class Feed extends Component {
     };
     _fetchPosts = async () => {
         this._setPostsFetchingState(true);
-
         const response  = await fetch(api, {
             method: 'GET',
         });
-
         const { data: posts } = await response.json();
+        const authors = this.state.posts.map(post => post.author);
 
         this.setState({
             posts,
+            authors,
             isPostFetching: false,
-        })
-
+        });
 
     };
-
 
      _createPost = async(comment) => {
         this._setPostsFetchingState(true);
@@ -155,7 +153,7 @@ export default class Feed extends Component {
     };
 
     render () {
-        const { posts, isPostFetching } = this.state;
+        const { posts, isPostFetching, authors } = this.state;
 
         const postsJSX = posts.map((post) => {
             return (
@@ -172,6 +170,9 @@ export default class Feed extends Component {
         });
         return (
             <section className = { Styles.feed }>
+
+                <Autors autors = { authors } />
+
                 <Spinner isSpinner={isPostFetching} />
                 <StatusBar />
 
