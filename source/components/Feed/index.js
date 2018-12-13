@@ -1,7 +1,8 @@
 // Core
 import React, { Component } from 'react';
-// import moment from 'moment'; // Библиотека for <time>
 
+import { Transition, CSSTransition,  } from 'react-transition-group';
+import { fromTo } from 'gsap';
 
 //Components
 import { withProfile } from 'components/HOC/withProfile';
@@ -10,18 +11,16 @@ import StatusBar from 'components/StatusBar';
 import Composer from 'components/Composer';
 import Post from 'components/Post';
 import Spinner from 'components/Spinner';
-
+import Postman from 'components/Postman';
+import Counter from 'components/Counter';
 
 // Instruments
 import Styles from './styles.m.css';
 import { api, TOKEN, GROUP_ID } from 'config/api';
 import { socket } from 'socket/init';
 
-
 @withProfile
-
 export default class Feed extends Component {
-
     state = {
         posts:[],
         isPostFetching: false,
@@ -94,6 +93,8 @@ export default class Feed extends Component {
 
 
     };
+
+
      _createPost = async(comment) => {
         this._setPostsFetchingState(true);
 
@@ -147,29 +148,47 @@ export default class Feed extends Component {
             isPostFetching: false,
         }));
     };
+    _aniateComposerEnter = ( composer ) =>{
+        console.log('composer', composer);
+
+        fromTo(composer , 1, {opacity: 0, rotationX:50 }, {opacity: 1, rotationX:0});
+    };
 
     render () {
         const { posts, isPostFetching } = this.state;
 
         const postsJSX = posts.map((post) => {
             return (
-                <Catcher>
-                <Post
-                key = { post.id }{ ...post }
-                _likePosts = {this._likePosts}
-                _removePost = {this._removePost} />
-                </Catcher>
+                <CSSTransition
+                    className = {{ enter: Styles.postInStart, enterActive: Styles.postInEnd, }}
+                    key = { post.id }
+                    timeout = {{ enter: 500,  exit: 400, }}>
+
+                    <Catcher>
+                        <Post { ...post }  _likePosts = {this._likePosts} _removePost = {this._removePost} />
+                    </Catcher>
+                </CSSTransition>
             )
         });
-
-
         return (
             <section className = { Styles.feed }>
                 <Spinner isSpinner={isPostFetching} />
                 <StatusBar />
-                <Composer _createPost={this._createPost}/>
-                {postsJSX}
+
+                <Transition  appear  in  timeout = { 4000 }  onEnter = { this._aniateComposerEnter } >
+                    <Composer _createPost = { this._createPost } />
+                </Transition>
+                <Postman />
+                <Counter count={postsJSX.length} />
+
+                 {postsJSX}
+
             </section>
         )
     }
 }
+
+
+/*
+ <TransitionGroup> {postsJSX}</TransitionGroup>
+ */

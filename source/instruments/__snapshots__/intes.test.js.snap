@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`instrument: delay function should return an resolved promise 1`] = `undefined`;
+
+exports[`instrument: sum function should return an addition of two arguments passed  1`] = `9`;

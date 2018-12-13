@@ -135,3 +135,18 @@ MIT © [Lectrum](https://lectrum.io)
     <img src="https://img.shields.io/badge/%D0%A1%D0%B4%D0%B5%D0%BB%D0%B0%D0%BD%D0%BE%20%D1%81-%F0%9F%96%A4-red.svg?longCache=true&style=for-the-badge&colorA=000&colorB=fedcba"
       alt="Сделано с любовь" />
 </div>
+<hr />
+
+<h1>In this "Facebook" React-app I'm using: </h1>
+<ul>
+    <li> HOC  </li>
+    <li><b> Context </b>(Provider, Consumer in React)  </li>
+    <li><b> Web Socket</b> (  method : Create, Delete) </p> </li>
+    <li><b> Fetch REST</b> ( method : Post) </p></li>
+    <li> Librery for Animations <b> Transition (js) , CSSTransition (css) + TransitionGroup  </b></li>
+    <li>Use<b>  Jest</b> to test React applications </p> </li>
+    <li> Use<b>  Enzyme </b> to test React Components </p> </li>
+</ul>
+
+
+<hr />

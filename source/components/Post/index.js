@@ -24,11 +24,9 @@ class Post extends Component {
 
     _removePost=() => {
         const { _removePost, id } = this.props;
-
         _removePost(id);
     };
     _getCross = () => {
-
         const { firstName , lastName, currentUserFirstName, currentUserLastName } = this.props;
 
         return  `${firstName} ${lastName}` ===
