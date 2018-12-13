@@ -137,7 +137,7 @@ MIT © [Lectrum](https://lectrum.io)
 </div>
 <hr />
 
-<h1>I'm using create-react-app for  "Facebook" chat page </h1>
+<h1> React App for "Facebook" chat page </h1>
 
 <ul>
     <li> HOC  </li>

@@ -7,7 +7,7 @@ import Feed from 'components/Feed';
 import { Provider } from 'components/HOC/withProfile';
 
 // Instruments
-import avatar from 'theme/assets/lisa';
+import avatar from 'theme/assets/user';
 
 const options = {
     avatar,

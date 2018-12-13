@@ -21,8 +21,6 @@ describe("instrument:", ()=>{
         await  expect(delay()).resolves.toBeUndefined();
     });
 
-// getUniqueID
-
     test( 'getUniqueID function should be a functon', () => {
         expect(getUniqueID).toBeInstanceOf(Function);
     });
