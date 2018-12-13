@@ -137,13 +137,14 @@ MIT © [Lectrum](https://lectrum.io)
 </div>
 <hr />
 
-<h1>In this "Facebook" React-app I'm using: </h1>
+<h1>I'm using create-react-app for  "Facebook" chat page </h1>
+
 <ul>
     <li> HOC  </li>
     <li><b> Context </b>(Provider, Consumer in React)  </li>
     <li><b> Web Socket</b> (  method : Create, Delete) </p> </li>
     <li><b> Fetch REST</b> ( method : Post) </p></li>
-    <li> React Animation Libraries <b> Transition (js) , CSSTransition (css) and TransitionGroup  </b></li>
+    <li> React Animation Libraries  as<b> Transition (js) , CSSTransition (css) and TransitionGroup  </b></li>
     <li>Use<b>  Jest</b> to test React applications </p> </li>
     <li> Use<b>  Enzyme </b> to test React Components </p> </li>
 </ul>
