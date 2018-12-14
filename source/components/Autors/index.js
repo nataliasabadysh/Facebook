@@ -3,22 +3,14 @@ import React, { Component } from 'react';
 
 
 export default class Autors extends Component{
-    render() {
-        const authors = this.state.posts.map(post => post.author);
 
-        const autorsJSX = authors.map((author) => {
+    render() {
+
+        const autorsJSX = this.props.authors.map((author) => {
 
             return (
-                <li key = { author.id } >
-
-                    <div>
-
-                        <span>{post.firstName}</span>
-                        <span>{post.lastName}</span>
-                        <span>{post.avatar}</span>
-
-                    </div>
-
+                <li>
+                     <span>{ ...author}</span>
                 </li>
             );
         });

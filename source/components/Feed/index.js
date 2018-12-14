@@ -1,7 +1,7 @@
 // Core
 import React, { Component } from 'react';
 
-import { Transition, CSSTransition,  } from 'react-transition-group';
+import { Transition, CSSTransition, TransitionGroup } from 'react-transition-group';
 import { fromTo } from 'gsap';
 
 //Components
@@ -13,7 +13,7 @@ import Post from 'components/Post';
 import Spinner from 'components/Spinner';
 import Postman from 'components/Postman';
 import Counter from 'components/Counter';
-import Autors from 'components/Autors';
+//import Autors from 'components/Autors';
 
 // Instruments
 import Styles from './styles.m.css';
@@ -25,7 +25,7 @@ export default class Feed extends Component {
     state = {
         posts:[],
         isPostFetching: false,
-        authors: [],
+       // authors: [],
     };
 
      componentDidMount() {
@@ -75,11 +75,13 @@ export default class Feed extends Component {
             method: 'GET',
         });
         const { data: posts } = await response.json();
-        const authors = this.state.posts.map(post => post.author);
 
+        // const authors = posts.map(post => post.firstName && post.avatar);
+
+        //console.log(authors);
         this.setState({
             posts,
-            authors,
+           // authors,
             isPostFetching: false,
         });
 
@@ -138,12 +140,12 @@ export default class Feed extends Component {
     };
 
     render () {
-        const { posts, isPostFetching, authors } = this.state;
+        const { posts, isPostFetching } = this.state;
 
         const postsJSX = posts.map((post) => {
             return (
                 <CSSTransition
-                    className = {{ enter: Styles.postInStart, enterActive: Styles.postInEnd, }}
+                    classNames = {{ enter: Styles.postInStart, enterActive: Styles.postInEnd }}
                     key = { post.id }
                     timeout = {{ enter: 500,  exit: 400, }}>
 
@@ -156,7 +158,7 @@ export default class Feed extends Component {
         return (
             <section className = { Styles.feed }>
 
-                <Autors autors = { authors } />
+                {/*<Autors authors = { authors } />*/}
 
                 <Spinner isSpinner={isPostFetching} />
                 <StatusBar />
@@ -167,7 +169,7 @@ export default class Feed extends Component {
                 <Postman />
                 <Counter count={postsJSX.length} />
 
-                 {postsJSX}
+                <TransitionGroup> {postsJSX}</TransitionGroup>
 
             </section>
         )
