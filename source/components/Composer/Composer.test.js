@@ -1,7 +1,9 @@
 // Core
 import React from 'react';
 import { mount } from 'enzyme';
-import Composer from './';
+
+import { Composer } from './';
+// import Composer from './';
 
 const props = {
     _createPost: jest.fn(),
@@ -38,47 +40,46 @@ describe('Composer component :' , () => {
         expect(result.find('img')).toHaveLength(1);
     });
 
-    // test('should have valid initial state', () => {
-    //     expect(result.state()).toEqual(initialState);
-    //  });
+    test('should have valid initial state', () => {
+        expect(result.state()).toEqual(initialState);
+     });
 
     test('textarea value should be empty initially', () => {
         expect(result.find('textarea').text()).toBe('');
     });
 
-    // test('should respond to state change properly ', () => {
-    //     result.setState({
-    //         comment,
-    //     });
-    //     expect(result.state()).toEqual(updatedState);
-    //     expect(result.find('textarea').text()).toBe(comment);
-    //
-    //      result.setState({
-    //         comment: '',
-    //     });
-    //
-    // expect(result.state()).toEqual(initialState);
-    // expect(result.find('textarea').text()).toBe('');
-    //
-    // });
+    test('should respond to state change properly ', () => {
+        result.setState({
+            comment,
+        });
+        expect(result.state()).toEqual(updatedState);
+        expect(result.find('textarea').text()).toBe(comment);
 
-    // test('should handle textarea "change" event', () => {
-    //     result.find('textarea').simulate('change', {
-    //         target:{
-    //             value: comment
-    //         }
-    //     });
-    //     expect(result.find('textarea').text()).toBe(comment);
-    //     expect(result.state()).toEqual(updatedState);
-    // });
+         result.setState({
+            comment: '',
+        });
+
+    expect(result.state()).toEqual(initialState);
+    expect(result.find('textarea').text()).toBe('');
+
+    });
+
+    test('should handle textarea "change" event', () => {
+        result.find('textarea').simulate('change', {
+            target:{
+                value: comment
+            }
+        });
+        expect(result.find('textarea').text()).toBe(comment);
+        expect(result.state()).toEqual(updatedState);
+    });
 
     // test('should handle form  "submit" event', () => {
     //     result.find('form').simulate('submit');
-    //
     //     expect(result.state()).toEqual(updatedState);
     //
     // });
-    //test('_createPost prop sould be invoked once after form submission', ()=>{
+    // test('_createPost prop sould be invoked once after form submission', ()=>{
     //     // expect(props._createPost.mock.calls.length).toBe(1);
     //     // expect(props._createPost).toHaveBeenCalled();
     //     expect(props._createPost).toHaveBeenCalledTimes(1);
