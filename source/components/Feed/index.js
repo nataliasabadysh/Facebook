@@ -7,7 +7,6 @@ import { fromTo } from 'gsap';
 //Components
 import { withProfile } from 'components/HOC/withProfile';
 import Catcher from 'components/Catcher';
-import StatusBar from 'components/StatusBar';
 import Composer from 'components/Composer';
 import Post from 'components/Post';
 import Spinner from 'components/Spinner';
@@ -161,7 +160,6 @@ export default class Feed extends Component {
                 {/*<Autors authors = { authors } />*/}
 
                 <Spinner isSpinner={isPostFetching} />
-                <StatusBar />
 
                 <Transition  appear  in  timeout = { 4000 }  onEnter = { this._aniateComposerEnter } >
                     <Composer _createPost = { this._createPost } />

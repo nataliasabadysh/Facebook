@@ -31,8 +31,6 @@ export class Composer extends Component {
     };
 
     _submitComment =  () => {
-        // event.preventDefault();
-
         const { comment } = this.state;
 
         if(!comment){ return null; }
