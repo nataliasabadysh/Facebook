@@ -70,13 +70,12 @@ class StatusBar extends Component {
 
                     <Link to = '/profile'>
                         <img src = { avatar } />
-                        <span>{currentUserFirstName}</span>
+                        <span>{ currentUserFirstName }</span>
                         &nbsp;
     
                     </Link>
-                    <Link to = '/feed'>
-                       Feed
-                    </Link>
+                    <Link to = '/feed'> Feed </Link>
+                    <Link to = '/login'> Login </Link>
                 </section>
             </Transition>
 

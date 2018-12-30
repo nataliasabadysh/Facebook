@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 
 //Components
-import { withProfile } from 'components/HOC/withProfile';
+import { withProfile } from 'components/HOC/withProfile'; 
 
 
 // Instruments
@@ -13,19 +13,12 @@ export default class Feed extends Component {
 
     render () {
         const { currentUserFirstName, currentUserLastName, avatar } = this.props;
-        
+
         return (
             <section className = { Styles.profile }>
-                <h1>
-                    Welcome, { currentUserFirstName } { currentUserLastName }
-                </h1>
                 <img src = { avatar } />
+                <h1> Welcome, { currentUserFirstName } { currentUserLastName } </h1>
             </section>
         );
     }
 }
-
-
-/*
- <TransitionGroup> {postsJSX}</TransitionGroup>
- */

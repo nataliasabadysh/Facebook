@@ -6,14 +6,17 @@
     background-color: var(--paletteColor3);
     padding-top: 50px;
 
+
     & h1 {
         color: var(--paletteColor8);
         font-size: 20px;
         margin-bottom: 50px;
+        padding: 20px 0;
     }
 
     & img {
         border-radius: 50%;
-        border: 1px solid var(--paletteColor9);
+        width: 110px;
+        height: 100px;
     }
 }

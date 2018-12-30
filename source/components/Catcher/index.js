@@ -14,6 +14,7 @@ export default class Catcher extends Component {
     static propoTypes ={
         children: object.isRequired,
     };
+
     state = {
         error: false,
     };
@@ -38,6 +39,7 @@ export default class Catcher extends Component {
                 </section>
             )
         }
+              
         return this.props.children;
     }
 
